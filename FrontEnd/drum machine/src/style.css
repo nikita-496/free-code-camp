@@ -1,0 +1,73 @@
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+  background: #474787;
+}
+
+.container {
+ display: flex;
+ background: #18191BFF;
+  box-shadow: 0px 0px 5px #666;
+  text-align: center;
+  height: 300px;
+  width: 700px;
+  padding:0;
+  
+}
+
+.control {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+   width:350px;
+}
+
+#display {
+  background: #D5D5D5FF;
+   height: 55px;
+   width: 200px;
+}
+
+
+.pad-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+.drum-pad{
+  margin: 10px 5px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 80px;
+  width: 70px;
+  
+  font-weight:800;
+  font-size: 30px;
+  
+  color: white;
+  
+  
+  border: 2px solid black;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px #666;
+  
+  cursor:pointer;
+}
+
+#Heater-1 {background:#76CBE0FF;}
+#Heater-2 {background:#F29F75FF;}
+#Heater-3 {background:#A290E2FF;}
+#Heater-4{background:#EAE38AFF;}
+#Clap{background:#B5E78BFF;}
+#Open-HH{background:#F5DA7CFF;}
+#Kick-n-Hat{background:#FEB3CAFF;}
+#Kick{background:#B3BAC2FF;}
+#Closed-HH{background:#6CD0B6FF}
