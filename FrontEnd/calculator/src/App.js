@@ -12,7 +12,8 @@ const collectionNum  = [
     
     const COLLECTIONTOOLS = [
       {name : "AC", class: 'item clean', id : 'clear'}, {name : '/', class: 'item-division manipulation', id : 'divide'},{name : '*', class: 'item-multi manipulation', id : 'multiply'},{name : '-', class: 'item-minus manipulation', id : 'subtract'}, {name : "+", class: 'item-plus manipulation', id : 'add'}, {name : "=", class: 'item-equal equal', id : 'equals'},{name : ".", class: 'item-decimal', id : 'decimal'},{name : "0", class: 'item-nil nil', id : 'zero'}
-    ]
+    ];
+
     
     class App extends Component {
       constructor(props){
@@ -22,12 +23,31 @@ const collectionNum  = [
        this.outputValue = this.outputValue.bind(this);
       }
       
-
+      //Отображение введенных данных с кнопок калькулятора на дисплей калькулятора
       setValue (items) {
         let input = this.state.currentValue;
          if (items === "AC") { 
           input = '0';
         }
+
+        //Обработка вывода десятичных чисел (чтобы десятичный знак в числе присутсовал только один раз)
+        else if (items === ".") {
+            if(input.indexOf("+") === -1 && input.indexOf("-") === -1 && input.indexOf("*") === -1 && input.indexOf("/") === -1) {
+              if (input.indexOf(".")=== -1) {input+= items}
+            }
+
+            else {
+              if (input.split("").filter(n => n === ".").length === 1) {input+= items}
+            }
+
+        }
+
+        //Обработка 13 пункта в тесте FCC
+        /* 
+        else if ((input[input.length-1] && input[input.length-2] === '+') || (input[input.length-1] && input[input.length-2] === '-') || (input[input.length-1] && input[input.length-2] === '*') || (input[input.length-1] && input[input.length-2] === '/')) {
+          if (input[input.length-1] === "-") {}
+        }*/
+
         else {
           if(input === '0') {input = ""}
           input += items
@@ -36,10 +56,10 @@ const collectionNum  = [
         this.setState ({ currentValue: input })
       }
 
+      //Выво в десплее резульата введенной операции с числами 
        outputValue () {
          let output = this.state.currentValue;
          this.setState ({currentValue: math.evaluate(output)})
-         
       }
 
       render() {
@@ -79,10 +99,9 @@ const collectionNum  = [
           else {this.props.output()}
         }
 
-      
       render() {
         const {text,nameClass,trigger} = this.props; 
-        
+
         return(
               <button className={nameClass} id = {trigger} onClick = {this.handleClick}>
                 {text}
