@@ -18,42 +18,59 @@ const collectionNum  = [
     class App extends Component {
       constructor(props){
         super(props);
-       this.state = { currentValue: '0'};
+       this.state = { currentValue: '0', operatorsFlag: false, decimalFlag: false};
        this.setValue = this.setValue.bind(this);
        this.outputValue = this.outputValue.bind(this);
       }
       
       //Отображение введенных данных с кнопок калькулятора на дисплей калькулятора
       setValue (items) {
-        let input = this.state.currentValue;
-         if (items === "AC") { 
-          input = '0';
-        }
+        let input = this.state.currentValue
+        let operatorsFlag = this.state.operatorsFlag
+        switch (true) {
+          case items ==="0" || items ==="1" || items ==="2" || items ==="3" || items ==="4" || items ==="5" ||
+               items ==="6" || items ==="7" || items ==="8" || items ==="9" : 
+                if (input === "0") {input = ""} //сбрасываем ноль впереди чисел
+                input += items
+                operatorsFlag = false
+          break;
+          case items ==="+" || items ==="*" || items ==="-" || items ==="/": 
+                if (!operatorsFlag) {input += items; operatorsFlag = true; this.setState( {decimalFlag: false} )}
+                //Смена операторов на месте (если после нажатия на кнопку с операторми нажали на еще одну кнопку с операторами, оператор меняется на значени последней нажатой кнопки. 13 пункт в тестах) 
+                else {
+                  if (items !== "-") {
+                    input += items
+                    let discharge = input.replace(/[^.\d]/g, "") //сброс всех операторов стоящих до текущего оператора
+                    input = discharge + items // замена сброшенных операторов на текущий
 
-        //Обработка вывода десятичных чисел (чтобы десятичный знак в числе присутсовал только один раз)
-        else if (items === ".") {
-            if(input.indexOf("+") === -1 && input.indexOf("-") === -1 && input.indexOf("*") === -1 && input.indexOf("/") === -1) {
-              if (input.indexOf(".")=== -1) {input+= items}
+                    let currentOperators = input.substring(0,input.length-1)
+                    input = currentOperators
+                    input += items
+                  }
+                  else {
+                    input += items
+                  }
+                }
+
+          break;
+          case  items ===".":
+            let decimalFlag = this.state.decimalFlag;
+            if (!decimalFlag) {
+              input += "."
+              this.setState( {decimalFlag: true} )
             }
 
-            else {
-              if (input.split("").filter(n => n === ".").length === 1) {input+= items}
-            }
+          break;
+          case items ==="AC":
+                if(input !== '0')  {input = '0'}
+                this.setState( {decimalFlag: false} )
+          break;
+          default:
 
+          break;
         }
-
-        //Обработка 13 пункта в тесте FCC
-        /* 
-        else if ((input[input.length-1] && input[input.length-2] === '+') || (input[input.length-1] && input[input.length-2] === '-') || (input[input.length-1] && input[input.length-2] === '*') || (input[input.length-1] && input[input.length-2] === '/')) {
-          if (input[input.length-1] === "-") {}
-        }*/
-
-        else {
-          if(input === '0') {input = ""}
-          input += items
-         
-        }
-        this.setState ({ currentValue: input })
+        this.setState( {operatorsFlag: operatorsFlag} )
+        this.setState( {currentValue: input} )
       }
 
       //Выво в десплее резульата введенной операции с числами 
@@ -67,8 +84,8 @@ const collectionNum  = [
         return(
             <div className="calculator">
              
-            <div className = "formulaScreen"> {currentValue} </div>
-            <div className = "format_display" id = "display"> {currentValue} </div>
+              <div className = "formulaScreen"> {currentValue} </div>
+              <div className = "format_display" id = "display"> {currentValue} </div>
               
               {collectionNum.map(item => <Tools text = {item.name} trigger = {item.id} nameClass = {item.class} setValue = {this.setValue} output = {this.outputValue}/>)}
              
