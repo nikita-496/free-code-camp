@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import propTypes from "prop-types";
 import { create, all } from "mathjs"
 
+import Tools from "./Tools";
+
 const config = { }
 const math = create(all, config)
 
@@ -102,29 +104,6 @@ const collectionNum  = [
       setValue: propTypes.object.isRequired
     }
      
-    class Tools extends Component{
-        constructor(props){
-            super(props);
-            this.state = {currentValue: this.props.text}
-            this.handleClick = this.handleClick.bind(this)
-        }
-
-        handleClick() {
-          if (this.props.text !== "=") {
-           this.props.setValue(this.state.currentValue)
-          }
-          else {this.props.output()}
-        }
-
-      render() {
-        const {text,nameClass,trigger} = this.props; 
-
-        return(
-              <button className={nameClass} id = {trigger} onClick = {this.handleClick}>
-                {text}
-              </button>
-        )
-      }
-    }
+    
 
 export default App 
