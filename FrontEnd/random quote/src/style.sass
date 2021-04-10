@@ -1,0 +1,66 @@
+@import "variables"
+
+:root 
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100vh
+
+    background: url(img/Hendrix.jpg) center no-repeat
+    background-size: cover
+    font-size: 1em
+
+body
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+    opacity: 0.8
+
+
+
+.wrapper
+    max-width: 37.857em
+    .quote-container
+        border-radius: .2857em
+        background-color:$white
+
+        .quote-text
+            padding: 2.5em 3.125em
+            text-align: center
+            .quote
+                font-family: $font-quote 
+                font-size: 1.55em
+                font-weight: 500
+            .quote-author
+                display: block
+                padding-top: 1.429em
+                text-align: right
+
+            .btn
+                display: flex
+                justify-content: space-between
+                margin-top: 2.1429em
+
+                //Форматирвание кнопки запуска новый цитаты
+                .btn-quote
+                    color:$white
+                    background-color:$body-color
+
+                    border: none
+                    border-radius: $border-radius
+
+                    padding: $btn-padding
+
+                    font-size: .95em
+                    cursor: pointer
+
+                    //Форатирование публикаций в соц.сети
+                .items
+                    .item 
+                        margin-right: .3571em
+                        text-decoration: none
+
+//FOOTER
+.footer 
+    margin-top: 1.0714em
+    color: $white
+    text-align: center
+

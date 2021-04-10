@@ -1,0 +1,62 @@
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url(img/Hendrix.jpg) center no-repeat;
+  background-size: cover;
+  font-size: 1em;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  opacity: 0.8;
+}
+
+.wrapper {
+  max-width: 37.857em;
+}
+.wrapper .quote-container {
+  border-radius: 0.2857em;
+  background-color: #ffffff;
+}
+.wrapper .quote-container .quote-text {
+  padding: 2.5em 3.125em;
+  text-align: center;
+}
+.wrapper .quote-container .quote-text .quote {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.55em;
+  font-weight: 500;
+}
+.wrapper .quote-container .quote-text .quote-author {
+  display: block;
+  padding-top: 1.429em;
+  text-align: right;
+}
+.wrapper .quote-container .quote-text .btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.1429em;
+}
+.wrapper .quote-container .quote-text .btn .btn-quote {
+  color: #ffffff;
+  background-color: #27AE60FF;
+  border: none;
+  border-radius: 0.2143em;
+  padding: 0.6714em 1.2857em;
+  font-size: 0.95em;
+  cursor: pointer;
+}
+.wrapper .quote-container .quote-text .btn .items .item {
+  margin-right: 0.3571em;
+  text-decoration: none;
+}
+
+.footer {
+  margin-top: 1.0714em;
+  color: #ffffff;
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

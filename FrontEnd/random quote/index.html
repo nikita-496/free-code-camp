@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <script src = "src/index.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class = "quote-container" id = "quote-box">
+            <div class = "quote-text">
+                <span class ="quote" id = "text"></span>
+                <span class = "quote-author" id = "author"></span>
+                <div class="btn">
+                    <div class="items">
+                        <a class="btn-quote item" id = "tweet-quote" title="Tweet this quote!" target="_top" href="https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22When%20I%20stand%20before%20God%20at%20the%20end%20of%20my%20life%2C%20I%20would%20hope%20that%20I%20would%20not%20have%20a%20single%20bit%20of%20talent%20left%20and%20could%20say%2C%20I%20used%20everything%20you%20gave%20me.%22%20Erma%20Bombeck">
+                            Tweet Quote
+                        </a>
+                        <a class="btn-quote item" id = "tumblr-quote" title="Post this quote on tumblr!" target="_blank" href="https://www.tumblr.com/login?redirect_to=https%3A%2F%2Fwww.tumblr.com%2Fwidgets%2Fshare%2Ftool%3Fposttype%3Dquote%26tags%3Dquotes%252Cfreecodecamp%26caption%3DErma%2BBombeck%26content%3DWhen%2BI%2Bstand%2Bbefore%2BGod%2Bat%2Bthe%2Bend%2Bof%2Bmy%2Blife%252C%2BI%2Bwould%2Bhope%2Bthat%2BI%2Bwould%2Bnot%2Bhave%2Ba%2Bsingle%2Bbit%2Bof%2Btalent%2Bleft%2Band%2Bcould%2Bsay%252C%2BI%2Bused%2Beverything%2Byou%2Bgave%2Bme.%26canonicalUrl%3Dhttps%253A%252F%252Fwww.tumblr.com%252Fbuttons%26shareSource%3Dtumblr_share_button">
+                            Tumblr Tumblr
+                        </a>
+                    </div>
+                    <button class = "btn-quote" id = "new-quote" onClick = "handleChange()">New quote</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">by Nikita Shevkunov</div>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> 
+</body>
+</html>
