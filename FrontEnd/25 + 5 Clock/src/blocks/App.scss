@@ -1,0 +1,13 @@
+.app-container {
+    display: block;
+    //background-color:rgb(14, 155, 14);
+    min-width:600px;
+    .main-title, .label{
+        color:$color;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .label{
+        font-size: 30px;
+    }
+}

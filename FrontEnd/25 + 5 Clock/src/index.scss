@@ -1,0 +1,19 @@
+@import "_vars.scss";
+
+#root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body{
+    background-color:#F5F6F7FF;
+    }
+h2 {
+    font-size: 50px;
+}
+
+@import "blocks/App.scss";
+@import "blocks/Control.scss";
+@import "blocks/Timer.scss";
