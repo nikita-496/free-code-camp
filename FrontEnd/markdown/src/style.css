@@ -1,0 +1,49 @@
+body{
+    background-color: #87B5B5FF;
+}
+
+.toolbar {
+    position: relative;
+    background-color: #4aa3a3;
+    
+    padding: 4px 4px 3px 3px;
+    border: 1px solid #1d2f2f;
+    box-shadow: 1px 1px 10px 2px #3a5f5f;
+    
+    font-size: 15px;
+}
+
+.editorWrap textarea{
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+
+    font-size: 12px;
+    background-color: #C0D8D8FF;
+
+    border: 1px solid #1d2f2f;
+    box-shadow: 1px 1px 10px 2px #3a5f5f;
+    border-top: none;
+
+    outline: none;
+}
+
+.previewWrap {
+    margin: 20px auto;
+    min-height: 200px;
+
+    background-color: #c0d8d8;
+    border: 1px solid #1d2f2f;
+    box-shadow: 1px 1px 10px 2px #3a5f5f;
+    border-top: none;
+}
+
+.name {
+    font-size: 15px;
+    font-family: Russo One;
+    font-weight: 700;
+    margin-left: 40px;
+    
+}

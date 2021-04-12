@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown</title>
+
+    <script src="./js/marked.js"></script>
+
+    <script>
+      function updatePreview () {
+       let previewElement = document.getElementById("preview");
+       let editorValue = document.getElementById ("editor").value; 
+       previewElement.innerHTML = marked(editorValue)
+      }
+    </script>
+
+    <style>
+       .editor-wraper, .preview-wraper{
+        display: flex;
+        justify-content: center;
+       }
+       .editor-wraper {
+        margin-top: 1.4em;
+       }
+        .preview-wraper{
+            margin-top: 1.4em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="editor-wraper">
+        <textarea class = "formation" id="editor" onkeyup="updatePreview()"></textarea>
+    </div>
+    
+    <div class="preview-wraper">
+        <div class ="formation-preview" id="preview"></div>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> 
+</body>
+</html>
