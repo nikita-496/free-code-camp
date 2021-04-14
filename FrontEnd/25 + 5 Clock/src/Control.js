@@ -5,43 +5,64 @@ import Timer from "./Timer"
 class Control extends Component {
     constructor(props) {
         super(props);
-        this.interval = undefined
         this.state = {
             countBreak: 5,
             countSession: 25,
-            clockCount: 25 * 60,
+            clockCount: /*25 * 60*/3,
             currentTimer: "Session",
+            interval: undefined,
             isPlaying: false,
-            interval: undefined
         }
         this.increase = this.increase.bind(this);
         this.decrease = this.decrease.bind(this)
     }
+       //Прекращение работы тайимера - время вышло
+       componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     //Запауск таймера 
     handlePlayPause = () => {
         const { isPlaying } = this.state;
 
-        if ( isPlaying) { //если тайме приостановлен
+        if ( isPlaying) { //если таймер приостановлен
             clearInterval(this.interval);
             this.setState({
                 isPlaying: false  
             }) 
         }
         else { // если запущен
-             this.interval = setInterval(()=> { const {clockCount} = this.state;
-             this.setState({
-                 clockCount: clockCount - 1
-             })
-            }, 1000);
             this.setState({
                 isPlaying: true  
-            })
-        }
-    } 
+            });
+            
+             this.interval = setInterval(()=> { 
+                const {clockCount, currentTimer, countBreak, countSession} = this.state;
+                if (clockCount === 0) { //если время истекло (минуты коничлись)
+                    this.setState({
+                        //Установка соответсвующего заголовка для таймера
+                        currentTimer: (currentTimer ==="Session") ? 'Break' : 'Session',
+                        //Действия соответсвующего заголовка для таймера
+                        clockCount: (currentTimer ==="Session") ? countBreak * 60 : countSession * 60
+                    })
+                }else {
+                    this.setState({ //время еще идет
+                        clockCount: clockCount - 1
+                    })
+                }
+            }, 1000);
+        } 
+    }
  
-
-    //Прекращение работы тайимера - время вышло
-    componentWillUnmount() {
+    //Сброс таймера 
+    handleRefresh = () => {
+        this.setState({
+            countBreak: 5,
+            countSession: 25,
+            clockCount: 25 * 60,
+            currentTimer: "Session",
+            isPlaying: false,
+        });
         clearInterval(this.interval);
     }
 
@@ -56,26 +77,34 @@ class Control extends Component {
     }
 
     increase (e) {
+            const {countBreak, countSession} = this.state;
             if (e.target.id === "break-increment") { 
                 this.setState({
-                countBreak: this.state.countBreak + 1
+                countBreak: countBreak + 1
             })
             } else {
-                this.setState({
-                    countSession: this.state.countSession + 1
-                }) 
+                if (countSession >= 60) {
+                    this.setState({
+                        countSession: 60
+                    }) 
+                }else {
+                    this.setState({
+                        countSession: countSession + 1
+                    }) 
+                }
             } 
     }
     
     decrease (e) {
+        const {countBreak, countSession} = this.state;
         if (e.target.id === "break-decrement") { 
-            if (this.state.countBreak <= 1){ //уменьшаем до 1
+            if (countBreak <= 1){ //уменьшаем до 1
                 this.setState({
                     countBreak: 1
                 }) 
             }else {
                 this.setState({
-                    countBreak: this.state.countBreak - 1
+                    countBreak: countBreak - 1
                 })
             } 
            
@@ -86,14 +115,14 @@ class Control extends Component {
                 }) 
             }else {
                 this.setState({
-                    countSession: this.state.countSession - 1
+                    countSession: countSession - 1
                 })
             } 
         } 
     }
 
     render() {
-        const {countBreak,countSession,clockCount,currentTimer } = this.state 
+        const {countBreak,countSession,clockCount,currentTimer,isPlaying } = this.state 
         return(
             <div className = "control">
 
@@ -118,7 +147,7 @@ class Control extends Component {
                         <button className ="btn-level" id = "session-increment" onClick = {this.increase}>+</button>
                     </div> {/*session*/}
                 </div> {/*length-control*/}
-            <Timer clockCount = {clockCount} currentTimer = {currentTimer} fun = {this.transformToTime} fun2 = {this.handlePlayPause}/> 
+            <Timer clockCount = {clockCount} currentTimer = {currentTimer} isPlaying = {isPlaying} fun = {this.transformToTime} fun2 = {this.handlePlayPause} fun3 = {this.handleRefresh}/> 
             </div>
         )
     }
