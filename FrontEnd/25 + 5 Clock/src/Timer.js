@@ -13,9 +13,10 @@ class Timer extends Component {
                 <h3 id ="timer-label">{currentTimer}</h3>
                 <div className = "time_format" id ="time-left">{this.props.fun(clockCount)}</div>
                 <div id = "taimer-control">
-                    <FontAwesomeIcon className="start" icon ={faPlayCircle} onClick = {this.props.fun2}/>
-                    <FontAwesomeIcon className="stop" icon ={faPauseCircle} onClick = {this.props.fun2}/>
-                    <button className ="reset">Refresh</button>
+
+                    {/*Ставим иконку в соответсвии с тем воспроизводится ли таймер или нет (пауза)*/}
+                    <FontAwesomeIcon className="start" icon = {this.props.isPlaying ? faPauseCircle : faPlayCircle } onClick = {this.props.fun2}/>
+                    <button className ="reset" onClick = {this.props.fun3}>Refresh</button>
                 </div>
             </div>
         )
