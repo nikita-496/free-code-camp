@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "../node_modules/@fortawesome/react-fontawesome"
 
 class Timer extends Component {
     render() {
-        const {clockCount,currentTimer} = this.props;
+        const {clockCount,currentTimer, isPlaying} = this.props;
         return(
             <div className = "taimer-container">
                 <h3 id ="timer-label">{currentTimer}</h3>
@@ -15,8 +15,8 @@ class Timer extends Component {
                 <div id = "taimer-control">
 
                     {/*Ставим иконку в соответсвии с тем воспроизводится ли таймер или нет (пауза)*/}
-                    <FontAwesomeIcon className="start" icon = {this.props.isPlaying ? faPauseCircle : faPlayCircle } onClick = {this.props.fun2}/>
-                    <button className ="reset" onClick = {this.props.fun3}>Refresh</button>
+                    <FontAwesomeIcon className="start-stop" id = "start_stop" icon = {isPlaying ? faPauseCircle : faPlayCircle } onClick = {this.props.fun2}/>
+                    <button className = "refresh" id ="reset" onClick = {this.props.fun3}>Refresh</button>
                 </div>
             </div>
         )
