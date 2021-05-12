@@ -26,7 +26,9 @@ class App extends Component {
 componentWillUnmount() {
     clearInterval(this.interval);
 }
-//Запауск таймера (Проверено)
+
+
+//Запауск таймера
 handlePlayPause = () => {
     const { isPlaying } = this.state;
 
@@ -34,7 +36,7 @@ handlePlayPause = () => {
         clearInterval(this.interval);
         this.setState({
             isPlaying: false  
-        }) 
+        }); 
     }
     else { // если запущен
         this.setState({
@@ -42,15 +44,20 @@ handlePlayPause = () => {
         });
         
          this.interval = setInterval(()=> { 
-            const {clockCount, currentTimer, countBreak, countSession} = this.state;
+            const {
+                clockCount, 
+                currentTimer, 
+                countBreak, 
+                countSession
+            } = this.state;
 
             if (clockCount === 0) { //если время истекло (минуты коничлись)
                 this.setState({
                     //Установка соответсвующего заголовка для таймера
-                    currentTimer: (currentTimer ==="Session") ? 'Break' : 'Session',
+                    currentTimer: (currentTimer === 'Session' ) ? 'Break' : 'Session',
                     //Действия соответсвующего заголовка для таймера
                     clockCount: (currentTimer ==="Session") ? (countBreak * 60) : (countSession * 60)
-                })
+                });
 
                 audio.play()
             }else {
@@ -58,19 +65,21 @@ handlePlayPause = () => {
                     clockCount: clockCount - 1
                 });
             }
+            
         }, 1000);
     } 
 }
 
 //Сброс таймера 
 handleRefresh = () => {
+    //состояние при сбросе
     this.setState({
         countBreak: 5,
         countSession: 25,
         clockCount: 25 * 60,
         currentTimer: "Session",
         isPlaying: false,
-    });//Зачем это писать, влияет ли это на работу приложения ?
+    });
     clearInterval(this.interval);
 
     //Отключения звукового сигнала при клике на кнупку сброс 
@@ -81,7 +90,6 @@ handleRefresh = () => {
 //Перевод к формату мм::cc (время)
 transformToTime = (count, flag) => {
     if (!flag) {count *= 60}  //чтоюбы при установки времени breack не отображался на дисплее
-    console.log(flag)
     let minutes = Math.floor(count / 60);
     let seconds = count % 60; 
 
@@ -171,15 +179,6 @@ decrease (e) {
          } 
      }  
 }
-//Установка времени должна отображаться только для Session 
-/*setTimer = (time) => {
-    const view = this.state.viewTimer
-    console.log(view)
-    console.log(time)
-    let a = this.transformToTime(time);
-     return (view) ? a = this.transformToTime(time) : 1
-    
-}*/
 
 handleLengthChange = (count, timerType) => {
     const {countSession, countBreak, isPlaying, currentTimer} = this.state;
