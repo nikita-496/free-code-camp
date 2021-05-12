@@ -1,13 +1,20 @@
 .taimer-container{
-    margin: 20px 150px 10px ;
-    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 150px 10px;
 
     border: 4px solid $color;
     border-radius: 10px;
 
-
-    span{
-        color: $color;
+    .time_format{
+        font-size: 40px;
+        margin-bottom: 30px;
     }
+
+    .start-stop{
+        font-size: 33px;
+    }
+
 }
    
